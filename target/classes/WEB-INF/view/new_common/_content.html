@@ -1,0 +1,127 @@
+@for(title in titles){
+@if(tool.isEmpty(title.children)){
+<!-- 常用推荐 -->
+<div class="d-flex flex-fill ">
+    <h4 class="text-gray text-lg mb-4">
+        <i class="site-tag iconfont icon-tag icon-lg mr-1" id="term-${title.id}"></i>
+        ${title.name}</h4>
+    <div class="flex-fill"></div>
+    <a class="btn-move text-xs" href="/favorites/${title.name}">more+</a>
+</div>
+<!-- 内容 -->
+@for(categorySite in categorySiteList){
+@if(isNotEmpty(categorySite.sites) && categorySite.title == title.name){
+<div class="row ">
+    @for(site in categorySite.sites){
+    <div class="url-card col-6  col-sm-6 col-md-4 col-xl-5a col-xxl-6a   ">
+
+        <div class="url-body default">
+            <a href="/sites/${site.id}" data-id="${site.id}"
+               data-url="${site.url}" class="card no-c  mb-4 site-${site.id}"
+               data-toggle="tooltip" data-placement="bottom" title=""
+               data-original-title="${site.description}">
+                <div class="card-body">
+                    <div class="url-content d-flex align-items-center">
+                        <div
+                                class="url-img rounded-circle mr-2 d-flex align-items-center justify-content-center">
+                            <img class="lazy loaded"
+                                 src="/static/tmp/${site.thumb}"
+                                 data-src="http://192.168.1.145/hot/icon.php?url=${site.url}"
+                                 onerror="javascript:this.src='/static/favicon.ico'"
+                                 alt="${site.title}" data-was-processed="true">
+                        </div>
+                        <div class="url-info flex-fill">
+                            <div class="text-sm overflowClip_1">
+                                <strong>${site.title}</strong>
+                            </div>
+                            <p class="overflowClip_1 m-0 text-muted text-xs">${site.description}</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="${site.url}"
+               class="togo text-center text-muted is-views" target="_blank" data-id="${site.id}"
+               data-toggle="tooltip" data-placement="right" title="" rel="nofollow"
+               data-original-title="直达"><i class="iconfont icon-goto"></i></a>
+        </div>
+    </div>
+    @}
+</div>
+@}}
+<!-- 内容 end -->
+<!-- 常用推荐 end -->
+@}else{
+<!-- 常用工具 -->
+<h4 class="text-gray text-lg">
+    <i class="site-tag iconfont icon-tag icon-lg mr-1" id="term-${title.id}"></i>
+    ${title.name}</h4>
+<!-- tab模式菜单 -->
+<div class="d-flex flex-fill flex-tab">
+    <div class="overflow-x-auto">
+        <div class="slider_menu mini_tab ajax-list-home into" slidertab="sliderTab" data-id="${title.id}">
+            <ul class="nav nav-pills menu" role="tablist">
+                <li class="anchor"
+                    style="position: absolute; width: 80px; height: 28px; left: 3px; opacity: 1;"></li>
+                @ count = 1;
+                @for(subTitle in title.children){
+                    @if(count == 1){
+                        <li class="pagenumber nav-item"><a id="term-${subTitle.id}" class="nav-link active"
+                                                   data-action="load_home_tab" data-taxonomy="favorites" data-id="${subTitle.id}">${subTitle.name}</a></li>
+                        @ count ++;
+                    @}else{
+                        <li class="pagenumber nav-item"><a id="term-${subTitle.id}" class="nav-link"
+                                                   data-action="load_home_tab" data-taxonomy="favorites" data-id="${subTitle.id}">${subTitle.name}</a></li>
+                    @}
+                @}
+
+            </ul>
+        </div>
+    </div>
+    <div class="flex-fill"></div>
+    <a class="btn-move tab-move text-xs ml-2" href="/favorites/${title.children[0].name}"
+       style="line-height:34px">more+</a>
+</div>
+<!-- tab模式菜单 end -->
+<div class="row ajax-${title.id}  mt-4" style="position: relative;">
+    @for(categorySite in categorySiteList){
+    @if(isNotEmpty(categorySite.sites) && categorySite.title == title.children[0].name){
+        @for(site in categorySite.sites){
+        <div class="url-card col-6  col-sm-6 col-md-4 col-xl-5a col-xxl-6a   ">
+
+            <div class="url-body default">
+                <a href="/sites/${site.id}" data-id="${site.id}"
+                   data-url="${site.url}" class="card no-c  mb-4 site-${site.id}"
+                   data-toggle="tooltip" data-placement="bottom" title=""
+                   data-original-title="${site.description}">
+                    <div class="card-body">
+                        <div class="url-content d-flex align-items-center">
+                            <div
+                                    class="url-img rounded-circle mr-2 d-flex align-items-center justify-content-center">
+                                <img class="lazy loaded"
+                                     src="/static/tmp/${site.thumb}"
+                                     data-src="http://192.168.1.145/hot/icon.php?url=${site.url}"
+                                     onerror="javascript:this.src='/static/img/favicon.png'"
+                                     alt="${site.title}" data-was-processed="true">
+                            </div>
+                            <div class="url-info flex-fill">
+                                <div class="text-sm overflowClip_1">
+                                    <strong>${site.title}</strong>
+                                </div>
+                                <p class="overflowClip_1 m-0 text-muted text-xs">${site.description}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="${site.url}"
+                   class="togo text-center text-muted is-views" target="_blank" data-id="${site.id}"
+                   data-toggle="tooltip" data-placement="right" title="" rel="nofollow"
+                   data-original-title="直达"><i class="iconfont icon-goto"></i></a>
+            </div>
+        </div>
+        @}
+    @}}
+
+</div>
+<!-- 常用工具 end -->
+@}
+@}

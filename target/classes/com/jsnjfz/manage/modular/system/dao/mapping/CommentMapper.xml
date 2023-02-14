@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jsnjfz.manage.modular.system.dao.CommentMapper">
+
+    <select id="selectByPrimaryKey" resultType="com.jsnjfz.manage.modular.system.model.Comment" parameterType="java.lang.Integer">
+        SELECT * FROM comments WHERE id = #{id}
+    </select>
+
+
+    <select id="getList" resultType="com.jsnjfz.manage.modular.system.model.Comment" parameterType="map">
+        select
+            *
+        from comments
+        where 1=1
+        <if test="httpReferer != null and httpReferer != ''">
+            and httpReferer = #{httpReferer}
+        </if>
+        <if test="comment != null and comment != ''">
+            and comment like CONCAT('%',#{comment},'%')
+        </if>
+        <if test="offset != null and limit != null">LIMIT #{offset},#{limit}</if>
+        ORDER BY createTime DESC
+    </select>
+
+    <select id="getPostId" resultType="java.lang.Integer" parameterType="map">
+        SELECT id+1 FROM comments ORDER BY id DESC LIMIT 1
+    </select>
+
+    <select id="getTotalCount" resultType="java.lang.Integer" parameterType="map">
+        select count(1)
+        from comments
+        where 1=1
+        <if test="httpReferer != null">
+            and httpReferer = #{httpReferer}
+        </if>
+        <if test="title != null and title != ''">
+            and comment like CONCAT('%',#{comment},'%')
+        </if>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from comments where id = #{id}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.jsnjfz.manage.modular.system.model.Comment" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into comments
+        <set>
+            siteId = #{siteId},
+            <if test="commentPostId != null">commentPostId=#{commentPostId},</if>
+            comment=#{comment},
+            author=#{author},
+            email=#{email},
+            url=#{url},
+            commentParent=#{commentParent},
+            <if test="httpReferer != null">httpReferer=#{httpReferer},</if>
+            wpnonce=#{wpnonce},
+            createTime=now()
+        </set>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.jsnjfz.manage.modular.system.model.Comment">
+        update comments
+        <set>
+            siteId = #{siteId},
+            <if test="commentPostId != null">commentPostId=#{commentPostId},</if>
+            comment=#{comment},
+            author=#{author},
+            email=#{email},
+            url=#{url},
+            commentParent=#{commentParent},
+            <if test="httpReferer != null">httpReferer=#{httpReferer},</if>
+            wpnonce=#{wpnonce},
+            updateTime=now()
+        </set>
+        where id = #{id}
+    </update>
+
+
+
+</mapper>

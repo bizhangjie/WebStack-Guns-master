@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+@include("/new_common/_head.html"){}
+
+@include("/new_common/PostId.html"){}
+
+<body class="io-grey-mode">
+
+    <!-- 进入页面初始效果 -->
+    <div id="loading">
+        <div id="preloader_3"></div>
+    </div>
+
+    <div class="page-container">
+        <!-- 侧边导航 -->
+        @include("/new_common/_sidebar.html"){}
+
+        <div class="main-content flex-fill">
+
+            <!-- 头部 -->
+            @include("/new_common/_header.html"){}
+
+            <!-- 内容 -->
+            <div id="content" class="container my-4 my-md-5">
+                <div class="panel card">
+                    <div class="card-body">
+                        <div class="panel-header mb-4">
+                            <h1 class="h3">留言本</h1>
+                        </div>
+                        <div class="panel-body mt-2">
+                            @for(notice in notices){
+                                <p>${notice.content}</p>
+                            @}
+                        </div>
+                    </div>
+                </div> <!-- comments -->
+                <div id="comments" class="comments">
+                    <h1 id="comments-list-title" class="comments-title h5 mx-1 my-4"> <i
+                            class="iconfont icon-comment"></i> <span class="noticom"> <a
+                            href="#" class="comments-title">${count} 条评论</a> </span>
+                    </h1>
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- 回复box-->
+                            <div id="respond_box">
+                                <div id="respond" class="comment-respond">
+                                    <form action="http://192.168.1.145/wp-comments-post.php" method="post"
+                                          id="commentform" class="text-sm mb-4">
+                                        <div class="visitor-avatar d-flex flex-fill mb-2"> <img
+                                                class="v-avatar rounded-circle"
+                                                src="https://www.24kdh.com/wp-content/themes/webstackpro/images/gravatar.jpg">
+                                        </div>
+                                        <div class="comment-textarea mb-3"> <textarea name="comment" id="comment"
+                                                                                      class="form-control" placeholder="输入评论内容..." tabindex="4" cols="50"
+                                                                                      rows="3"></textarea> </div>
+                                        <div id="comment-author-info" class="row row-sm">
+                                            <div class="col-sm-6 col-lg-4 mb-3"><input type="text" name="author"
+                                                                                       id="author" class="form-control" value="" size="22" placeholder="昵称"
+                                                                                       tabindex="2"></div>
+                                            <div class="col-sm-6 col-lg-4 mb-3"><input type="text" name="email"
+                                                                                       id="email" class="form-control" value="" size="22" placeholder="邮箱"
+                                                                                       tabindex="3"></div>
+                                            <div class="col-sm-12 col-lg-4 mb-3"><input type="text" name="url" id="url"
+                                                                                        class="form-control" value="" size="22" placeholder="网址"
+                                                                                        tabindex="4"></div>
+                                        </div>
+                                        <div class="com-footer text-right"> <input type="hidden" id="_wpnonce"
+                                                                                   name="wpnonce" value="78981b7418"><input type="hidden"
+                                                                                                                             name="httpReferer" value="/liuyan/comment-page-1"> <a
+                                                rel="nofollow" id="cancel-comment-reply-link" style="display: none;"
+                                                href="javascript:;"
+                                                class="btn btn-light custom_btn-outline mx-2">再想想</a> <input
+                                                class="btn btn-dark custom_btn-d" name="submit" type="submit"
+                                                id="submit" tabindex="5" value="发表评论"> <input type="hidden"
+                                                                                              name="commentPostId" value="359" id="comment_post_ID"><input
+                                                type="hidden" name="commentParent" id="comment_parent" value="0">
+                                        </div>
+                                    </form>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                            <div id="loading-comments"><span></span></div>
+                            <!-- 回复内容-->
+                            <ul class="comment-list">
+                                @for(comment in commentList){
+                                @if(isNotEmpty(comment)){
+                                <li class="comment odd alt thread-even depth-1 comment" id="li-comment-${comment.commentPostId}">
+                                    <div id="comment-${comment.commentPostId}" class="comment_body d-flex flex-fill">
+                                        <div class="profile mr-2 mr-md-3"> <img alt="${comment.author}"
+                                                                                src="https://cn.gravatar.com/avatar/a4abeaa3a8045d2e7cfbc0c087a04d47?s=96&amp;d=monsterid&amp;r=g"
+                                                                                srcset="https://cn.gravatar.com/avatar/a4abeaa3a8045d2e7cfbc0c087a04d47?s=192&amp;d=monsterid&amp;r=g 2x"
+                                                                                class="avatar avatar-96 photo" height="96" width="96" loading="lazy">
+                                        </div>
+                                        <section class="comment-text d-flex flex-fill flex-column">
+                                            <div class="comment-info d-flex align-items-center mb-1">
+                                                <div class="comment-author text-sm">${comment.author}
+<!--                                                    <span class="rank" data-toggle="tooltip" data-placement="right" title="" data-original-title="头衔：Vip1，累计评论：2">Vip1</span>-->
+                                                </div>
+                                            </div>
+                                            <div class="comment-content d-inline-block text-sm">
+                                                <p>${comment.comment}</p>
+                                            </div>
+                                            <div class="d-flex flex-fill text-xs text-muted pt-2">
+                                                <div class="comment-meta">
+                                                    <div class="info">
+                                                        <time itemprop="datePublished" datetime="${comment.createTime}">${comment.createTime}</time>
+                                                    </div>
+                                                </div>
+                                                <div class="flex-fill"></div>
+                                                <a rel="nofollow" class="comment-reply-link" href="https://www.24kdh.com/liuyan?replytocom=${comment.commentPostId}#respond"
+                                                   data-commentid="${comment.commentPostId}" data-postid="0" data-belowelement="comment-${comment.commentPostId}"
+                                                   data-respondelement="respond" data-replyto="回复给${comment.author}"
+                                                   aria-label="回复给${comment.author}">
+                                                    回复
+                                                </a>
+                                            </div>
+                                        </section>
+                                    </div>
+                                    @if(isNotEmpty(comment.replyComments)){
+                                    @for(replyComment in comment.replyComments){
+                                    <ul class="children">
+                                        <li class="comment byuser bypostauthor odd alt depth-2 comment"
+                                            id="li-comment-${replyComment.commentPostId}">
+                                            <div id="comment-${replyComment.commentPostId}" class="comment_body d-flex flex-fill">
+                                                <div class="profile mr-2 mr-md-3"> <img alt="${replyComment.author}"
+                                                                                        src="https://cn.gravatar.com/avatar/5f6ac8325a3bc40b9e73509887d228f9?s=96&amp;d=monsterid&amp;r=g"
+                                                                                        srcset="https://cn.gravatar.com/avatar/5f6ac8325a3bc40b9e73509887d228f9?s=192&amp;d=monsterid&amp;r=g 2x"
+                                                                                        class="avatar avatar-96 photo" height="96" width="96"
+                                                                                        loading="lazy"> </div>
+                                                <section class="comment-text d-flex flex-fill flex-column">
+                                                    <div class="comment-info d-flex align-items-center mb-1">
+                                                        <div class="comment-author text-sm"><a
+                                                                href="#"
+                                                                target="_blank" rel="nofollow noopener noreferrer"
+                                                                class="url">
+                                                            @if(replyComment.author == ''){ author ="匿名"; }else { author = replyComment.author;}
+                                                        ${author}</a> <span class="is-author"
+                                                                                            data-toggle="tooltip" data-placement="right" title=""
+                                                                                            data-original-title="博主"><i
+                                                                class="iconfont icon-user icon-fw"></i></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="comment-content d-inline-block text-sm">
+                                                        <p>${replyComment.comment}</p>
+                                                    </div>
+                                                    <div class="d-flex flex-fill text-xs text-muted pt-2">
+                                                        <div class="comment-meta">
+                                                            <div class="info"><time itemprop="datePublished"
+                                                                                    datetime="${replyComment.createTime}">${replyComment.createTime}</time>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                        </li><!-- #comment-## -->
+                                    </ul>
+                                    @}}
+                                </li><!-- #comment-## -->
+                                @}}
+
+                            </ul>
+
+                            <!-- 换页 -->
+<!--                            <nav id="comments-navi" class="text-center my-3"> <span aria-current="page"-->
+<!--                                                                                    class="page-numbers current">1</span><a class="page-numbers"-->
+<!--                                                                                                                            href="/liuyan/2#comments">2</a><a-->
+<!--                                    class="page-numbers"-->
+<!--                                    href="/liuyan/3#comments">3</a><span-->
+<!--                                    class="page-numbers dots">…</span><a class="page-numbers"-->
+<!--                                                                         href="/liuyan/17#comments">17</a><a-->
+<!--                                    class="next page-numbers"-->
+<!--                                    href="/liuyan/2#comments"><i-->
+<!--                                    class="iconfont icon-arrow-r"></i></a> </nav>-->
+                        </div>
+                    </div>
+                </div><!-- comments end -->
+            </div>
+            <!-- 内容 end -->
+
+            <!-- 底部 -->
+            @include("/new_common/_footer.html"){}
+
+        </div>
+    </div>
+
+    <!-- 弹出式的搜索栏 -->
+    @include("/new_common/_Search_modal.html"){}
+
+    <!-- 导入一些js -->
+    @include("/new_common/_script.html"){}
+
+
+    <!-- 是一个生成验证码的插件，使用js和canvas生成的 -->
+    <!-- <script type='text/javascript' src='https://ssl.captcha.qq.com/TCaptcha.js?ver=2.0418.9'></script> -->
+    <script src="/static/new_js/TCaptcha.js"></script>
+
+    <!-- 评论回复 js -->
+    <!-- <script type='text/javascript' src='https://nav.iowen.cn/wp-includes/js/comment-reply.min.js?ver=5.4.4'></script> -->
+    <script src="/static/new_js/comment-reply.min.js"></script>
+
+    <!-- 评论-ajax.js -->
+    <!-- <script type='text/javascript'
+        src='https://nav.iowen.cn/wp-content/themes/webstackpro/js/comments-ajax.js?ver=2.0418.9'></script> -->
+    <script src="/static/new_js/comment-ajax.js"></script>
+
+    <!-- <script type="text/javascript" src="https://www.24kdh.com/wp-includes/js/wp-embed.min.js?ver=5.5.3" id="wp-embed-js"></script> -->
+    <script src="/static/new_js/wp-embed.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).on('click', 'a.smooth-n', function (ev) {
+            ev.preventDefault();
+            $("html, body").animate({
+                scrollTop: $($(this).attr("href")).offset().top - 90
+            }, {
+                duration: 500,
+                easing: "swing"
+            });
+        });
+    </script>
+    <!-- 自定义代码 -->
+    <!-- end 自定义代码 -->
+
+</body>

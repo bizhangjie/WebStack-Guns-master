@@ -1,0 +1,78 @@
+
+<div id="sidebar" class="sticky sidebar-nav fade mini-sidebar animate-nav" style="width: 60px;">
+    <div class="modal-dialog h-100  sidebar-nav-inner">
+        <div class="sidebar-logo border-bottom border-color">
+            <!-- logo -->
+            <div class="logo overflow-hidden">
+                <a href="#" class="logo-expanded">
+<!--                    <img src="#/wp-content/uploads/2020/01/ywdh-logo-1.png" height="40"-->
+<!--                         class="logo-light" alt="导航">-->
+<!--                    <img src="#/wp-content/uploads/2020/01/ywdh-logo.png" height="40"-->
+<!--                         class="logo-dark d-none" alt="导航">-->
+                </a>
+                <a href="#" class="logo-collapsed">
+<!--                    <img src="#/wp-content/uploads/2020/01/ywdh-logo-bark-ico.png"-->
+<!--                         height="40" class="logo-light" alt="导航">-->
+<!--                    <img src="#/wp-content/uploads/2020/01/ywdh-logo-ico.png" height="40"-->
+<!--                         class="logo-dark d-none" alt="导航">-->
+                </a>
+            </div>
+            <!-- logo end -->
+        </div>
+        <div class="sidebar-menu flex-fill">
+            <div class="sidebar-scroll">
+                <div class="sidebar-menu-inner">
+                    <ul>
+                        @for(title in titles){
+                            @if(tool.isEmpty(title.children)){
+                            <li class="sidebar-item">
+                                <a href="${ip}#term-${title.id}" class="smooth">
+                                    <i class="fa ${title.icon} icon-fw icon-lg mr-2"></i>
+                                    <span>${title.name}</span>
+                                </a>
+                            </li>
+                            @}else{
+                            <li class="sidebar-item">
+                                <a href="javascript:;">
+                                    <i class="fa ${title.icon} icon-fw icon-lg mr-2"></i>
+                                    <span>${title.name}</span>
+                                    <i class="iconfont icon-arrow-r-m sidebar-more text-sm"></i>
+                                </a>
+                                <ul>
+                                    @for(subTitle in title.children){
+                                    <li>
+                                        <a href="${ip}#term-${subTitle.id}" class="smooth"><span>${subTitle.name}</span></a>
+                                    </li>
+                                    @}
+                                </ul>
+                            </li>
+                            @}
+                        @}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="border-top py-2 border-color">
+            <div class="flex-bottom">
+                <ul>
+                    <li id="menu-item-237"
+                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-237 sidebar-item">
+                        <a href="#">
+                            <i class="io io-tijiao icon-fw icon-lg mr-2"></i>
+                            <span>网站提交</span></a></li>
+                    <li id="menu-item-212"
+                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-212 sidebar-item">
+                        <a href="/liuyan">
+                            <i class="io io-caozuoshili icon-fw icon-lg mr-2"></i>
+                            <span>留言</span></a></li>
+                    <li id="menu-item-213"
+                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-213 sidebar-item">
+                        <a target="_blank" rel="noopener noreferrer" href="#">
+                            <i class="io io-iowen icon-fw icon-lg mr-2"></i>
+                            <span>待开发</span></a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

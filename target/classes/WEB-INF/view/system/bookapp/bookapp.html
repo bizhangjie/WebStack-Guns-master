@@ -1,0 +1,18 @@
+@layout("/common/_container.html"){
+
+<div id="div1">
+    <p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
+</div>
+
+<!-- 引入 wangEditor.min.js -->
+<script type="text/javascript">
+    const E = window.wangEditor
+    const editor = new E('#div1')
+    // 或者 const editor = new E( document.getElementById('div1') )
+    // 配置 server 接口地址
+    editor.config.uploadImgServer = '/upload-img'
+    editor.create()
+</script>
+
+
+@}

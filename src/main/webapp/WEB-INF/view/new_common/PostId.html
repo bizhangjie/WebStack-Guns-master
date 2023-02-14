@@ -1,0 +1,32 @@
+<script>
+
+$(document).ready(function () {
+
+    function setPost(sites, key) {
+        window.localStorage.setItem(key, JSON.stringify(sites));
+    }
+
+    function getPost(key) {
+        return window.localStorage.getItem(key);
+    }
+
+    var PostId = ${PostId};
+    var key = "PostID";
+    if(!getPost(key)){
+        console.log("储存中。。");
+        setPost(PostId, key);
+        console.log("储存完毕");
+        $('#comment_post_ID').val(PostId);
+        $('.comment-reply-link').data("postid",PostId);
+    }else{
+        var PostId = getPost(key);
+        $('#comment_post_ID').val(PostId);
+        $('.comment-reply-link').data("postid",PostId);
+    }
+
+
+
+});
+
+
+</script>

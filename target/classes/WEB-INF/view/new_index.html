@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+@include("/new_common/_head.html"){}
+
+<body class="io-grey-mode">
+    <!-- 进入页面初始效果 -->
+    <div id="loading">
+        <div id="preloader_3"></div>
+    </div>
+
+    <!-- 正页面 -->
+    <div class="page-container">
+        <!-- 侧边内容 -->
+        @include("/new_common/_sidebar.html"){}
+
+        <div class="main-content flex-fill">
+
+            <!-- 头部 -->
+            @include("/new_common/_header.html"){}
+
+            <!-- 搜索部分 -->
+            @include("/new_common/_Search.html"){}
+
+            <!-- 主体内容 -->
+            <div id="content" class="content-site customize-site">
+
+                <!-- 图片及资讯板块 -->
+                @include("/new_common/_lunbotu.html"){}
+
+                <!-- 热搜专栏 -->
+                @include("/new_common/_hot.html"){}
+
+                <!-- 我的导航 -->
+                @include("/new_common/_MyNav.html"){}
+
+                @include("/new_common/_content.html"){}
+
+            </div>
+
+            <!-- 底部 -->
+            @include("/new_common/_footer.html"){}
+
+        </div>
+    </div>
+
+    <!-- 弹出式的搜索栏 -->
+    @include("/new_common/_Search_modal.html"){}
+
+    <!-- 导入一些js -->
+    @include("/new_common/_script.html"){}
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            setTimeout(function () {
+                $('a.smooth[href="' + window.location.hash + '"]').click();
+            }, 300);
+            $(document).on('click', 'a.smooth', function (ev) {
+                ev.preventDefault();
+                if ($('#sidebar').hasClass('show')) {
+                    $('#sidebar').modal('toggle');
+                }
+                $("html, body").animate({
+                    scrollTop: $($(this).attr("href")).offset().top - 90
+                }, {
+                    duration: 500,
+                    easing: "swing"
+                });
+                if ($(this).hasClass('go-search-btn')) {
+                    $('#search-text').focus();
+                }
+                var menu = $("a" + $(this).attr("href"));
+                menu.click();
+                toTarget(menu.parent().parent(), true, true);
+            });
+            $(document).on('click', 'a.tab-noajax', function (ev) {
+                var url = $(this).data('link');
+                if (url)
+                    $(this).parents('.d-flex.flex-fill.flex-tab').children('.btn-move.tab-move').show().attr('href', url);
+                else
+                    $(this).parents('.d-flex.flex-fill.flex-tab').children('.btn-move.tab-move').hide();
+            });
+        });
+    </script>
+    <!-- 自定义代码 -->
+    <!-- end 自定义代码 -->
+
+</body>

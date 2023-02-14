@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+@include("/new_common/_head.html"){}
+
+@ icon = "http://127.0.0.1/webstack/hot/icon.php?url=";
+@ quanzhong = "http://127.0.0.1/webstack/go.php";
+@ title = site.title;
+
+@include("/new_common/PostId.html"){}
+
+<body class="io-grey-mode">
+
+    <!-- 进入页面初始效果 -->
+    <div id="loading">
+        <div id="preloader_3"></div>
+    </div>
+
+    <div class="page-container">
+        <!-- 侧边内容 -->
+        @include("/new_common/_sidebar.html"){}
+
+        <div class="main-content flex-fill">
+
+            <!-- 头部 -->
+            @include("/new_common/_header.html"){}
+
+            <!-- 内容 -->
+            <div id="content" class="container my-4 my-md-5">
+                <div class="row site-content py-4 py-md-5 mb-xl-5 mb-0 mx-xxl-n5">
+                    <div class="background-fx">
+                        <img src="/static/img/fx/shape-01.svg"
+                             class="shape-01">
+                        <img src="/static/img/fx/shape-02.svg"
+                             class="shape-02">
+                        <img src="/static/img/fx/shape-03.svg"
+                             class="shape-03">
+                        <img src="/static/img/fx/shape-04.svg"
+                             class="shape-04">
+                        <img src="/static/img/fx/shape-05.svg"
+                             class="shape-05">
+                        <img src="/static/img/fx/shape-06.svg"
+                             class="shape-06">
+                        <img src="/static/img/fx/shape-07.svg"
+                             class="shape-07">
+                        <img src="/static/img/fx/shape-08.svg"
+                             class="shape-08">
+                        <img src="/static/img/fx/shape-09.svg"
+                             class="shape-09">
+                        <img src="/static/img/fx/shape-10.svg"
+                             class="shape-10">
+                        <img src="/static/img/fx/shape-11.svg"
+                             class="shape-11">
+                    </div> <!-- 网址信息 -->
+                    <div class="col-12 col-sm-5 col-md-4 col-lg-3">
+                        <div class="siteico">
+                            <div class="blur blur-layer"
+                                 style="background: transparent url(/static/tmp/${site.thumb}) no-repeat center center;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;animation: rotate 30s linear infinite;">
+                            </div>
+                            <img class="img-cover" src="/static/tmp/${site.thumb}" alt="${site.title}"
+                                 title="${site.title}">
+                            <div id="country" class="text-xs custom-piece_c_b country-piece loadcountry"><i
+                                    class="iconfont icon-globe mr-1"></i>中国</div>
+                            <div class="tool-actions text-center mt-md-4">
+                                <a href="javascript:;" post_like data-id="${site.id}"
+                                   class=" btn btn-like btn-icon btn-light rounded-circle p-2 mx-3 mx-md-2 "
+                                   data-toggle="tooltip" data-placement="top" title="点赞">
+                                    <span class="flex-column text-height-xs">
+                                        <i class="icon-lg iconfont icon-like"></i>
+                                        <small class="like-count text-xs mt-1">${site.love}</small>
+                                    </span>
+                                </a>
+                                <a href="javascript:;"
+                                   class="btn-share-toggler btn btn-icon btn-light rounded-circle p-2 mx-3 mx-md-2"
+                                   data-toggle="tooltip" data-placement="top" title="浏览">
+                                    <span class="flex-column text-height-xs">
+                                        <i class="icon-lg iconfont icon-chakan"></i>
+                                        <small class="share-count text-xs mt-1">${views}</small>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mt-4 mt-sm-0">
+                        <div class="site-body text-sm">
+                            @ if(site.categoryTitle == '媒体导航' && site.categoryUp == '媒体导航' ){
+                            <a class="btn-cat custom_btn-d mb-2"
+                               href="/favorites/${site.categoryUp}">${site.categoryUp}</a>
+                            @}if(site.categoryUp != '媒体导航'){
+                                <a class="btn-cat custom_btn-d mb-2"
+                                    href="/favorites/${site.categoryUp}">${site.categoryUp}</a>
+                            <i class="iconfont icon-arrow-r-m mr-n1 custom-piece_c"
+                               style="font-size:50%;color:#f1404b;vertical-align:0.075rem"></i> <a
+                                class='btn-cat custom_btn-d mb-2'
+                                href='/favorites/${site.categoryTitle}'>${site.categoryTitle}</a>
+                            @}if(site.categoryUp == '媒体导航' && site.categoryTitle != '媒体导航'){
+                            <a class="btn-cat custom_btn-d mb-2"
+                               href="/favorites/${site.categoryTitle}">${site.categoryTitle}</a>
+                            @}
+
+
+                            <div class="site-name h3 my-3">${site.title}</div>
+                            <div class="mt-2">
+                                <p class="mb-2">${site.description}</p>
+                                <div class="mt-2">爱站权重：<span class="mr-2">PC <a
+                                        href="${quanzhong}?url=${site.url}"
+                                        title="百度权重" target="_blank"><img class=""
+                                                                          src=${quanzhong}?qz=${site.url}&ty=br"
+                                                                          alt="百度权重" title="百度权重" style="height:18px"></a></span><span
+                                        class="mr-2">移动 <a
+                                        href="${quanzhong}?url=${site.url}"
+                                        title="百度移动权重" target="_blank"><img class=""
+                                                                            src="${quanzhong}?qz=${site.url}&ty=mbr"
+                                                                            alt="百度移动权重" title="百度移动权重" style="height:18px"></a></span></div>
+                                <div class="site-go mt-3">
+                                    <img class="security_check d-none" data-ip="112.124.128.15"
+                                         src="//www.gaoding.com/578728046.png" width=1 height=1
+                                         onerror=check("https://www.gaoding.com")> <span class="site-go-url">
+                                        <a style="margin-right: 10px;"
+                                           href="${site.url}"
+                                           title="${site.title}" target="_blank" class="btn btn-arrow"><span>链接直达<i
+                                                class="iconfont icon-arrow-r-m"></i></span></a>
+                                    </span>
+                                    <a href="javascript:" class="btn btn-arrow qr-img" data-toggle="tooltip"
+                                       data-placement="bottom" title="" data-html="true"
+                                       data-original-title="<img src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&margin=10&data=${site.url}' width='150'>"><span>手机查看<i
+                                            class="iconfont icon-qr-sweep"></i></span></a>
+                                </div>
+
+                                <p id="check_s" class="text-sm" style="display:none"><i
+                                        class="iconfont icon-loading icon-spin"></i></p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- 网址信息 end -->
+
+                </div>
+                <div class="panel site-content card transparent">
+                    <div class="card-body p-0">
+                        <div class="panel-body my-4 ">
+                            ${site.description} </div>
+                    </div>
+                </div>
+
+                <h4 class="text-gray text-lg my-4"><i class="site-tag iconfont icon-tag icon-lg mr-1"></i>相关导航</h4>
+                <div class="row mb-n4 customize-site">
+                    @ count = 1;
+                    @for(site in sites){
+                    @if(count <= 6 && site.title != title){
+                    <div class="url-card col-6 col-sm-6 col-md-4 ">
+
+                        <div class="url-body default">
+                            <a href="/sites/${site.id}" data-id="${site.id}" data-url="${site.url}"
+                               class="card no-c  mb-4 site-${site.id}" data-toggle="tooltip" data-placement="bottom"
+                               title="${site.description}, T-Shirt, vCard, EPS)">
+                                <div class="card-body">
+                                    <div class="url-content d-flex align-items-center">
+                                        <div
+                                                class="url-img rounded-circle mr-2 d-flex align-items-center justify-content-center">
+                                            <img class="lazy"
+                                                 src="/static/img/favicon.png"
+                                                 data-src="/static/tmp/${site.thumb}"
+                                                 onerror="javascript:this.src='/static/img/favicon.png'"
+                                                 alt="goqr">
+                                        </div>
+                                        <div class="url-info flex-fill">
+                                            <div class="text-sm overflowClip_1">
+                                                <strong>${site.title}</strong>
+                                            </div>
+                                            <p class="overflowClip_1 m-0 text-muted text-xs">${site.description}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="${site.url}"
+                               class="togo text-center text-muted is-views" target="_blank" data-id="${site.id}"
+                               data-toggle="tooltip" data-placement="right" title="直达" rel="nofollow"><i
+                                    class="iconfont icon-goto"></i></a>
+                        </div>
+                    </div>
+                    @ count = count + 1;
+                    @}}
+
+                </div>
+
+                <!-- comments -->
+                <div id="comments" class="comments">
+                    <h1 id="comments-list-title" class="comments-title h5 mx-1 my-4">
+                        <i class="iconfont icon-comment"></i>
+                        <span class="noticom">
+                            @if(isNotEmpty(commentList)){
+                            <a href="/sites/${site.id}#respond" class="comments-title">${count}条评论</a>
+                            @}else{
+                            <a href="/sites/${site.id}#respond" class="comments-title">暂无评论</a>
+                            @}
+                        </span>
+                    </h1>
+                    <div class="card">
+                        <div class="card-body">
+                            <div id="respond_box">
+                                <div id="respond" class="comment-respond">
+                                    <form action="https://nav.iowen.cn/wp-comments-post.php" method="post"
+                                          id="commentform" class="text-sm mb-4">
+                                        <div class="visitor-avatar d-flex flex-fill mb-2">
+                                            <img class="v-avatar rounded-circle"
+                                                 src="https://www.24kdh.com/wp-content/themes/webstackpro/images/gravatar.jpg">
+                                        </div>
+                                        <div class="comment-textarea mb-3">
+                                            <textarea name="comment" id="comment" class="form-control"
+                                                      placeholder="输入评论内容..." tabindex="4" cols="50" rows="3"></textarea>
+                                        </div>
+
+                                        <div id="comment-author-info" class="row  row-sm">
+                                            <div class="col-sm-6 col-lg-4 mb-3"><input type="text" name="author"
+                                                                                       id="author" class="form-control" value="" size="22" placeholder="昵称"
+                                                                                       tabindex="2" /></div>
+                                            <div class="col-sm-6 col-lg-4 mb-3"><input type="text" name="email"
+                                                                                       id="email" class="form-control" value="" size="22" placeholder="邮箱"
+                                                                                       tabindex="3" /></div>
+                                            <div class="col-sm-12 col-lg-4 mb-3"><input type="text" name="url" id="url"
+                                                                                        class="form-control" value="" size="22" placeholder="网址"
+                                                                                        tabindex="4" /></div>
+                                        </div>
+                                        <div class="com-footer text-right">
+                                            <input type="hidden" id="_wpnonce" name="wpnonce"
+                                                   value="5c00a9d42d" /><input type="hidden" name="httpReferer"
+                                                                               value="/sites/${site.id}" /> <a rel="nofollow"
+                                                                                                               id="cancel-comment-reply-link" style="display: none;"
+                                                                                                               href="javascript:;"
+                                                                                                               class="btn btn-light custom_btn-outline mx-2">再想想</a>
+<!--                                            <input type="hidden" id="c_tcaptcha_ticket" name="tcaptcha_ticket"-->
+<!--                                                   value="" />-->
+<!--                                            <input type="hidden" id="c_tcaptcha_randstr" name="tcaptcha_randstr"-->
+<!--                                                   value="" />-->
+                                            <input class="btn btn-dark custom_btn-d" name="submit" type="button"
+                                                   id="TencentCaptcha" tabindex="5" value="发表评论" data-appid="2095453596"
+                                                   data-cbfn="commentsTicket" />
+                                            <input type='hidden' name='commentPostId' value='${PostId}'
+                                                   id='comment_post_ID' />
+                                            <input type='hidden' name='commentParent' id='comment_parent' value='0' />
+                                        </div>
+                                    </form>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                            <div id="loading-comments"><span></span></div>
+                            @if(isNotEmpty(commentList)){
+                            <!-- 回复内容-->
+                            <ul class="comment-list">
+                                @for(comment in commentList){
+                                @if(isNotEmpty(comment)){
+                                <li class="comment odd alt thread-even depth-1 comment" id="li-comment-${comment.commentPostId}">
+                                    <div id="comment-${comment.commentPostId}" class="comment_body d-flex flex-fill">
+                                        <div class="profile mr-2 mr-md-3"> <img alt="${comment.author}"
+                                                                                src="https://cn.gravatar.com/avatar/a4abeaa3a8045d2e7cfbc0c087a04d47?s=96&amp;d=monsterid&amp;r=g"
+                                                                                srcset="https://cn.gravatar.com/avatar/a4abeaa3a8045d2e7cfbc0c087a04d47?s=192&amp;d=monsterid&amp;r=g 2x"
+                                                                                class="avatar avatar-96 photo" height="96" width="96" loading="lazy">
+                                        </div>
+                                        <section class="comment-text d-flex flex-fill flex-column">
+                                            <div class="comment-info d-flex align-items-center mb-1">
+                                                <div class="comment-author text-sm">${comment.author}
+                                                    <!--                                                    <span class="rank" data-toggle="tooltip" data-placement="right" title="" data-original-title="头衔：Vip1，累计评论：2">Vip1</span>-->
+                                                </div>
+                                            </div>
+                                            <div class="comment-content d-inline-block text-sm">
+                                                <p>${comment.comment}</p>
+                                            </div>
+                                            <div class="d-flex flex-fill text-xs text-muted pt-2">
+                                                <div class="comment-meta">
+                                                    <div class="info">
+                                                        <time itemprop="datePublished" datetime="${comment.createTime}">${comment.createTime}</time>
+                                                    </div>
+                                                </div>
+                                                <div class="flex-fill"></div>
+                                                <a rel="nofollow" class="comment-reply-link" href="#"
+                                                   data-commentid="${comment.commentPostId}" data-postid="0" data-belowelement="comment-${comment.commentPostId}"
+                                                   data-respondelement="respond" data-replyto="回复给${comment.author}"
+                                                   aria-label="回复给${comment.author}">
+                                                    回复
+                                                </a>
+                                            </div>
+                                        </section>
+                                    </div>
+                                    @if(isNotEmpty(comment.replyComments)){
+                                    @for(replyComment in comment.replyComments){
+                                    <ul class="children">
+                                        <li class="comment byuser bypostauthor odd alt depth-2 comment"
+                                            id="li-comment-${replyComment.commentPostId}">
+                                            <div id="comment-${replyComment.commentPostId}" class="comment_body d-flex flex-fill">
+                                                <div class="profile mr-2 mr-md-3"> <img alt="${replyComment.author}"
+                                                                                        src="https://cn.gravatar.com/avatar/5f6ac8325a3bc40b9e73509887d228f9?s=96&amp;d=monsterid&amp;r=g"
+                                                                                        srcset="https://cn.gravatar.com/avatar/5f6ac8325a3bc40b9e73509887d228f9?s=192&amp;d=monsterid&amp;r=g 2x"
+                                                                                        class="avatar avatar-96 photo" height="96" width="96"
+                                                                                        loading="lazy"> </div>
+                                                <section class="comment-text d-flex flex-fill flex-column">
+                                                    <div class="comment-info d-flex align-items-center mb-1">
+                                                        <div class="comment-author text-sm"><a
+                                                                href="#"
+                                                                target="_blank" rel="nofollow noopener noreferrer"
+                                                                class="url">
+                                                            @if(replyComment.author == ''){ author ="匿名"; }else { author = replyComment.author;}
+                                                            ${author}</a> <span class="is-author"
+                                                                                data-toggle="tooltip" data-placement="right" title=""
+                                                                                data-original-title="博主"><i
+                                                                class="iconfont icon-user icon-fw"></i></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="comment-content d-inline-block text-sm">
+                                                        <p>${replyComment.comment}</p>
+                                                    </div>
+                                                    <div class="d-flex flex-fill text-xs text-muted pt-2">
+                                                        <div class="comment-meta">
+                                                            <div class="info"><time itemprop="datePublished"
+                                                                                    datetime="${replyComment.createTime}">${replyComment.createTime}</time>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                        </li><!-- #comment-## -->
+                                    </ul>
+                                    @}}
+                                </li><!-- #comment-## -->
+                                @}}
+
+                            </ul>
+
+                            @}else{
+                                <div class="not-comment card">
+                                    <div class="card-body nothing text-center color-d">暂无评论...</div>
+                                </div>
+                            @}
+                        </div>
+                    </div>
+                </div>
+                <!-- comments end -->
+            </div>
+            <!-- 内容 end -->
+            <script type='text/javascript'>
+                $(document).ready(function () {
+                    if ($(".security_check.d-none").length > 0) {
+                        $("#check_s").show();
+                        $("#country").show();
+                        if (!$("#country").hasClass('loadcountry'))
+                            ipanalysis($(".security_check.d-none").data('ip'));
+                    }
+                    else {
+                        $("#check_s").remove();
+                        $("#country:not(.loadcountry)").remove();
+                    }
+                });
+                var tim = 1;
+                var timer = setInterval("tim++", 100);
+                function check(url) {
+                    var msg = "";
+                    if (tim > 100) {
+                        clearInterval(timer);
+                        $.getJSON('//api.iowen.cn/webinfo/get.php?url=' + url, function (data) {
+                            if (data.code == 0) {
+                                msg = '<i class="iconfont icon-crying-circle mr-1" style="color:#f12345"></i>链接超时，网站可能下线了，请点击直达试试 <i class="iconfont icon-crying"></i>';
+                                updateStatus(false);
+                            }
+                            else {
+                                msg = '<i class="iconfont icon-smiley-circle mr-1" style="color:#f1b223"></i>墙外世界需要梯子 <i class="iconfont icon-smiley"></i>';
+                                updateStatus(true);
+                            }
+                            $("#check_s").html(msg);
+                        }).fail(function () {
+                            msg = '<i class="iconfont icon-crying-circle mr-1" style="color:#f12345"></i>链接超时，网站可能下线了，请点击直达试试 <i class="iconfont icon-crying"></i>';
+                            $("#check_s").html(msg);
+                            updateStatus(false);
+                        });
+                    }
+                    else {
+                        msg = '<i class="iconfont icon-smiley-circle mr-1" style="color:#26f123"></i>链接成功:' + tim / 10 + '秒';
+                        $("#check_s").html(msg);
+                        updateStatus(true);
+                        clearInterval(timer);
+                    }
+                }
+                function ipanalysis(ip) {
+                    $.getJSON('//api.iotheme.cn/ip/get.php?ip=' + ip, function (data) {
+                        if (data.status == 'success') {
+                            $("#country").html('<i class="iconfont icon-globe mr-1"></i>' + data.country);
+                            $.ajax({
+                                url: "https://nav.iowen.cn/wp-admin/admin-ajax.php",
+                                data: {
+                                    action: "io_set_country",
+                                    country: data.country,
+                                    id: ${site.id}
+                                },
+                                type: 'POST',
+                                error: function () {
+                                    console.log('网络错误 --.');
+                                }
+                            });
+                        }
+                        else
+                            $("#country").html('<i class="iconfont icon-crying-circle mr-1"></i>查询失败');
+                    }).fail(function () {
+                        $("#country").html('<i class="iconfont icon-crying-circle"></i>');
+                    });
+                }
+                function updateStatus(isInvalid) {
+                    $.ajax({
+                        url: "http://127.0.0.1/webstack/admin-ajax.php",
+                        data: {
+                            action: "link_failed",
+                            is_inv: isInvalid,
+                            post_id: ${site.id}
+                        },
+                        type: 'POST',
+                        error: function () {
+                            console.log('网络错误 --.');
+                        }
+                    });
+                }
+            </script>
+
+            <!-- 底部 -->
+            @include("/new_common/_footer.html"){}
+
+        </div>
+    </div>
+
+    <!-- 弹出式的搜索栏 -->
+    @include("/new_common/_Search_modal.html"){}
+
+    <!-- 导入一些js -->
+    @include("/new_common/_script.html"){}
+
+    <!-- 是一个生成验证码的插件，使用js和canvas生成的 -->
+    <!-- <script type='text/javascript' src='https://ssl.captcha.qq.com/TCaptcha.js?ver=2.0418.9'></script> -->
+    <script src="/static/new_js/TCaptcha.js"></script>
+
+    <!-- 评论回复 js -->
+    <!-- <script type='text/javascript' src='https://nav.iowen.cn/wp-includes/js/comment-reply.min.js?ver=5.4.4'></script> -->
+    <script src="/static/new_js/comment-reply.min.js"></script>
+
+    <!-- 评论-ajax.js -->
+    <!-- <script type='text/javascript'
+        src='https://nav.iowen.cn/wp-content/themes/webstackpro/js/comments-ajax.js?ver=2.0418.9'></script> -->
+    <script src="/static/new_js/comment-ajax.js"></script>
+
+    <!-- <script type="text/javascript" src="https://www.24kdh.com/wp-includes/js/wp-embed.min.js?ver=5.5.3" id="wp-embed-js"></script> -->
+    <script src="/static/new_js/wp-embed.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).on('click', 'a.smooth-n', function (ev) {
+            ev.preventDefault();
+            $("html, body").animate({
+                scrollTop: $($(this).attr("href")).offset().top - 90
+            }, {
+                duration: 500,
+                easing: "swing"
+            });
+        });
+    </script>
+    <!-- 自定义代码 -->
+    <!-- end 自定义代码 -->
+
+</body>

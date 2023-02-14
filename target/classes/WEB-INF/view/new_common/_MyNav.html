@@ -1,0 +1,84 @@
+<div class="d-flex flex-fill customize-menu">
+    <div class="slider_menu mini_tab into" slidertab="sliderTab">
+        <ul class="nav nav-pills menu" role="tablist">
+            <li class="anchor"
+                style="position: absolute; width: 80px; height: 28px; left: 3px; opacity: 1;"></li>
+            <li class="pagenumber nav-item">
+                <a class="nav-link active" data-toggle="pill" href="#my-nav">我的导航</a>
+            </li>
+            <li class="pagenumber nav-item">
+                <a class="nav-link" data-toggle="pill" href="#my-click">最近点击</a>
+            </li>
+        </ul>
+    </div>
+    <div class="flex-fill"></div>
+    <a class="btn-edit text-xs" href="javascript:;">编辑网址</a>
+</div>
+<div class="tab-content mt-4">
+    <div id="my-nav" class="tab-pane active">
+        <div class="row ">
+            <div class="url-card col-6  col-sm-6 col-md-4 col-xl-5a col-xxl-6a  down col-xxl-10a">
+
+                <div class="url-body mini">
+                    <a href="#" data-id="294" data-url=""
+                       class="card  mb-3 site-294" data-toggle="tooltip" data-placement="bottom"
+                       title="" data-original-title="默认推荐">
+                        <div class="card-body">
+                            <div class="url-content d-flex align-items-center">
+                                <div
+                                        class="url-img rounded-circle mr-2 d-flex align-items-center justify-content-center">
+                                    <img class="lazy loaded"
+                                         src="https://nav.iowen.cn/wp-content/uploads/2020/01/20200115161627_a8298e49.png"
+                                         data-src="https://nav.iowen.cn/wp-content/uploads/2020/01/20200115161627_a8298e49.png"
+                                         onerror="javascript:this.src='/static/img/favicon.png'"
+                                         alt="webstack 导航主题开源版" data-was-processed="true">
+                                </div>
+                                <div class="url-info flex-fill" style="padding-top: 2px">
+                                    <div class="text-sm overflowClip_1">
+                                        <strong>webstack 导航主题开源版</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="url-card col-6  col-sm-6 col-md-4 col-xl-5a col-xxl-6a  col-xxl-10a"
+                 id="add-site" style="display: none">
+                <a type="button" class="rounded mb-3" data-toggle="modal" data-target="#addSite"
+                   style="background: rgba(136, 136, 136, 0.1);width: 100%;text-align: center;border: 2px dashed rgba(136, 136, 136, 0.5);">
+                    <div class="text-lg" style="padding:0.22rem 0.5rem;">
+                        +
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="my-click" class="tab-pane">
+        <div class="row  my-click-list">
+            <!-- 这里自动存放点击记录 -->
+        </div>
+    </div>
+</div>
+<!-- 添加网站的模态框 -->
+<div class="modal fade" id="addSite">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="modal-title text-center text-lg mb-4">添加自定义网址</div>
+                <form class="add-link-form" action="javascript:;">
+                    <input type="text" class="site-add-name form-control mb-2" placeholder="网站名称"
+                           required="required">
+                    <input type="url" class="site-add-url form-control mb-2" value="http://"
+                           required="required">
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-light btn-xs mr-3">添加</button>
+                        <button type="button" class="btn-close-fm btn btn-dark btn-xs"
+                                data-dismiss="modal">取消</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

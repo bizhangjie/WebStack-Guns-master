@@ -1,0 +1,223 @@
+<div class="overflow-x-auto mb-3" style="margin:0 -.5rem;padding:0 .5rem">
+    <div class="row row-sm hot-search">
+        <div class="col  col-md  col-lg">
+            <div class="card hot-card mb-2">
+                <div class="card-header widget-header d-flex"
+                     style="background-color:transparent;border-bottom:0">
+                    <span><i class="mr-2 iconfont icon-baidu" style="color:#2319DC"></i>百度</span>
+                    <span class="ml-auto d-none d-md-block">热点</span>
+                </div>
+                <div class="card-body pb-3 pt-0">
+                    <div class="overflow-auto hot-body">
+                        <div id="hot_news-baidu">
+
+                        </div>
+                    </div>
+                    <div class="d-flex text-xs text-muted pt-2 mb-n2">
+                        <div class="flex-fill"></div>
+                        <span><a href="javascript:" id="hot-lod-baidu" title="刷新"
+                                 style="color:#6c757d"><i
+                                class="iconfont icon-refresh icon-lg"></i></a></span>
+                    </div>
+                </div>
+            </div>
+            <div id="hot-loading-baidu" class="ajax-loading text-center rounded"
+                 style="position: absolute; display: none; width: 100%; left: 0px; top: 0px; bottom: 0.5rem; background: rgba(125, 125, 125, 0.5);">
+                <div id="hot-success-baidu" class="col align-self-center"><i
+                        class="iconfont icon-loading icon-spin icon-2x"></i></div>
+            </div>
+        </div>
+        <script>
+                                                   (function ($) {
+                                                       let apiurl = "baidu_topsearch";
+                                                       getList(apiurl);
+
+                                                       $('#hot-lod-baidu').on('click', function () {
+                                                           $(this).children('i').addClass('icon-spin');
+                                                           $("#hot-success-baidu").html('<i class="iconfont icon-loading icon-spin icon-2x"></i>');
+                                                           $("#hot-loading-baidu").fadeIn(200);
+                                                           getList(apiurl);
+                                                       });
+                                                       function getList(_type) {
+                                                           $.post("http://39.101.194.186/hot/get.php", { type: _type }, function (data, status) {
+                                                               let html = '';
+                                                               for (var i = 0; i < data.length; i++) {
+                                                                   html += '<div class="d-flex text-sm mb-2"><div><span class="hot-rank hot-rank-' + (data[i]['id']) + ' text-xs text-center">' + (data[i]['id']) + '</span><a class="ml-2" href="http://www.baidu.com/baidu?cl=3&amp;tn=SE_baiduhomet8_jmjb7mjw&amp;rsv_dl=fyb_top&amp;fr=top1000&amp;wd=' + data[i]['list_title'] + '" target="_blank" rel="external nofollow">' + data[i]['list_title'] + '</a></div><div class="ml-auto hot-heat d-none d-md-block">' + (data[i]['last'] / 10000).toFixed(1) + '万</div></div>';
+                                                               }
+                                                               $("#hot-loading-baidu").fadeOut(200);
+                                                               $('#hot-lod-baidu').children('i').removeClass('icon-spin');
+                                                               $("#hot_news-baidu").html(html);
+                                                           }).fail(function () {
+                                                               $('#hot-lod-baidu').children('i').removeClass('icon-spin');
+                                                               $("#hot-success-baidu").show(200).html('获取失败，请再试一次！').parent().delay(3500).fadeOut(200);
+                                                           });
+                                                       }
+                                                   })(jQuery)
+                        </script>
+        <div class="col col-md col-lg">
+            <div class="card hot-card mb-2">
+                <div class="card-header widget-header d-flex"
+                     style="background-color:transparent;border-bottom:0">
+                    <span><i class="mr-2 iconfont icon-weibo" style="color:#E6162D"></i>微博</span>
+                    <span class="ml-auto d-none d-md-block">热搜榜</span>
+                </div>
+                <div class="card-body pb-3 pt-0">
+                    <div class="overflow-auto hot-body">
+                        <div id="hot_news-weibo">
+
+                        </div>
+                    </div>
+                    <div class="d-flex text-xs text-muted pt-2 mb-n2">
+                        <div class="flex-fill"></div>
+                        <span><a href="javascript:" id="hot-lod-weibo" title="刷新"
+                                 style="color:#6c757d"><i
+                                class="iconfont icon-refresh icon-lg"></i></a></span>
+                    </div>
+                </div>
+            </div>
+            <div id="hot-loading-weibo" class="ajax-loading text-center rounded"
+                 style="position: absolute; display: none; width: 100%; left: 0px; top: 0px; bottom: 0.5rem; background: rgba(125, 125, 125, 0.5);">
+                <div id="hot-success-weibo" class="col align-self-center"><i
+                        class="iconfont icon-loading icon-spin icon-2x"></i></div>
+            </div>
+        </div>
+        <script>
+                                                   (function ($) {
+                                                       let apiurl = "weibo_topsearch";
+                                                       getList(apiurl);
+
+                                                       $('#hot-lod-weibo').on('click', function () {
+                                                           $(this).children('i').addClass('icon-spin');
+                                                           $("#hot-success-weibo").html('<i class="iconfont icon-loading icon-spin icon-2x"></i>');
+                                                           $("#hot-loading-weibo").fadeIn(200);
+                                                           getList(apiurl);
+                                                       });
+                                                       function getList(_type) {
+                                                           $.post("http://39.101.194.186/hot/get.php", { type: _type }, function (data, status) {
+                                                               let html = '';
+                                                               for (var i = 0; i < data.length; i++) {
+                                                                   html += '<div class="d-flex text-sm mb-2"><div><span class="hot-rank hot-rank-' + (data[i]['id']) + ' text-xs text-center">' + (data[i]['id']) + '</span><a class="ml-2" href="https://s.weibo.com/weibo?q=' + data[i]['list_title'] + '" target="_blank" rel="external nofollow">' + data[i]['list_title'] + '</a></div><div class="ml-auto hot-heat d-none d-md-block">' + (data[i]['last'] / 10000).toFixed(1) + '万</div></div>';
+                                                               }
+                                                               $("#hot-loading-weibo").fadeOut(200);
+                                                               $('#hot-lod-weibo').children('i').removeClass('icon-spin');
+                                                               $("#hot_news-weibo").html(html);
+                                                           }).fail(function () {
+                                                               $('#hot-lod-weibo').children('i').removeClass('icon-spin');
+                                                               $("#hot-success-weibo").show(200).html('获取失败，请再试一次！').parent().delay(3500).fadeOut(200);
+                                                           });
+                                                       }
+                                                   })(jQuery)
+                        </script>
+        <div class="col  col-md  col-lg">
+            <div class="card hot-card mb-2">
+                <div class="card-header widget-header d-flex"
+                     style="background-color:transparent;border-bottom:0">
+                    <span><i class="mr-2 iconfont icon-smzdm" style="color:#ED382F"></i>什么值得买</span>
+                    <span class="ml-auto d-none d-md-block">精选好价</span>
+                </div>
+                <div class="card-body pb-3 pt-0">
+                    <div class="overflow-auto hot-body">
+                        <div id="hot_news-jinxuan">
+
+                        </div>
+                    </div>
+                    <div class="d-flex text-xs text-muted pt-2 mb-n2">
+                        <div class="flex-fill"></div>
+                        <span><a href="javascript:" id="hot-lod-jinxuan" title="刷新"
+                                 style="color:#6c757d"><i
+                                class="iconfont icon-refresh icon-lg"></i></a></span>
+                    </div>
+                </div>
+            </div>
+            <div id="hot-loading-jinxuan" class="ajax-loading text-center rounded"
+                 style="position: absolute; display: none; width: 100%; left: 0px; top: 0px; bottom: 0.5rem; background: rgba(125, 125, 125, 0.5);">
+                <div id="hot-success-jinxuan" class="col align-self-center"><i
+                        class="iconfont icon-loading icon-spin icon-2x"></i></div>
+            </div>
+        </div>
+        <script>
+                                                   (function ($) {
+                                                       let apiurl = "smzdm_select";
+                                                       getList(apiurl);
+                                                       $('#hot-lod-jinxuan').on('click', function () {
+                                                           $(this).children('i').addClass('icon-spin');
+                                                           $("#hot-success-jinxuan").html('<i class="iconfont icon-loading icon-spin icon-2x"></i>');
+                                                           $("#hot-loading-jinxuan").fadeIn(200);
+                                                           getList(apiurl);
+                                                       });
+                                                       function getList(_type) {
+                                                           $.post("http://39.101.194.186/hot/get.php", { type: _type }, function (data, status) {
+                                                               let html = '';
+                                                               for (var i = 0; i < data.length; i++) {
+                                                                   html += '<div class="text-sm mb-3">' +
+                                                                       '<div class="mb-1"><span class="hot-rank hot-rank-' + (i + 1) + ' text-xs text-center">' + (i + 1) + '</span><a class="ml-2" href="' + data[i]['link'] + '" target="_blank" rel="external nofollow">' + data[i]['title'] + '</a></div>' +
+                                                                       '<div class="d-flex">' +
+                                                                       '<span class="hot-platform text-xs text-center"><span>' + (data[i]['platform']) + '</span></span><div class="ml-auto d-none d-md-block">' + data[i]['price'] + '</div>' +
+                                                                       '</div></div>';
+                                                               }
+                                                               $("#hot-loading-jinxuan").fadeOut(200);
+                                                               $('#hot-lod-jinxuan').children('i').removeClass('icon-spin');
+                                                               $("#hot_news-jinxuan").html(html);
+                                                           }).fail(function () {
+                                                               $('#hot-lod-jinxuan').children('i').removeClass('icon-spin');
+                                                               $("#hot-success-jinxuan").show(200).html('获取失败，请再试一次！').parent().delay(3500).fadeOut(200);
+                                                           });
+                                                       }
+                                                   })(jQuery)
+                        </script>
+        <div class="col col-md col-lg">
+            <div class="card hot-card mb-2">
+                <div class="card-header widget-header d-flex"
+                     style="background-color:transparent;border-bottom:0">
+                    <span><i class="mr-2 iconfont icon-zhihu" style="color:#0084FF"></i>知乎</span>
+                    <span class="ml-auto d-none d-md-block">热榜</span>
+                </div>
+                <div class="card-body pb-3 pt-0">
+                    <div class="overflow-auto hot-body">
+                        <div id="hot_news-zhihu">
+
+                        </div>
+                    </div>
+                    <div class="d-flex text-xs text-muted pt-2 mb-n2">
+                        <div class="flex-fill"></div>
+                        <span><a href="javascript:" id="hot-lod-zhihu" title="刷新"
+                                 style="color:#6c757d"><i
+                                class="iconfont icon-refresh icon-lg"></i></a></span>
+                    </div>
+                </div>
+            </div>
+            <div id="hot-loading-zhihu" class="ajax-loading text-center rounded"
+                 style="position: absolute; display: none; width: 100%; left: 0px; top: 0px; bottom: 0.5rem; background: rgba(125, 125, 125, 0.5);">
+                <div id="hot-success-zhihu" class="col align-self-center"><i
+                        class="iconfont icon-loading icon-spin icon-2x"></i></div>
+            </div>
+        </div>
+        <script>
+                                (function ($) {
+                                    let apiurl = "zhihu_topsearch";
+                                    getList(apiurl);
+
+                                    $('#hot-lod-zhihu').on('click', function () {
+                                        $(this).children('i').addClass('icon-spin');
+                                        $("#hot-success-zhihu").html('<i class="iconfont icon-loading icon-spin icon-2x"></i>');
+                                        $("#hot-loading-zhihu").fadeIn(200);
+                                        getList(apiurl);
+                                    });
+                                    function getList(_type) {
+                                        $.post("http://39.101.194.186/hot/get.php", { type: _type }, function (data, status) {
+                                            let html = '';
+                                            for (var i = 0; i < data.length; i++) {
+                                                html += '<div class="d-flex text-sm mb-2"><div><span class="hot-rank hot-rank-' + (data[i]['id']) + ' text-xs text-center">' + (data[i]['id']) + '</span><a class="ml-2" href="' + data[i]['link'] + '" target="_blank" rel="external nofollow">' + data[i]['titleArea'] + '</a></div><div class="ml-auto hot-heat d-none d-md-block">' + (data[i]['metricsArea']) + '</div></div>';
+                                            }
+                                            $("#hot-loading-zhihu").fadeOut(200);
+                                            $('#hot-lod-zhihu').children('i').removeClass('icon-spin');
+                                            $("#hot_news-zhihu").html(html);
+                                        }).fail(function () {
+                                            $('#hot-lod-zhihu').children('i').removeClass('icon-spin');
+                                            $("#hot-success-zhihu").show(200).html('获取失败，请再试一次！').parent().delay(3500).fadeOut(200);
+                                        });
+                                    }
+                                })(jQuery)
+                        </script>
+    </div>
+</div>

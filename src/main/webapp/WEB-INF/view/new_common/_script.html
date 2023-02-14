@@ -1,0 +1,34 @@
+<script type="text/javascript"> // 这是利用php刷新内容的链接
+        /* <![CDATA[ */
+        var theme = { "ajaxurl": "http://39.101.194.186/webstack/admin-ajax.php", "addico": "https:\/\/nav.iowen.cn\/wp-content\/themes\/webstackpro\/images\/add.png", "order": "asc", "formpostion": "top", "defaultclass": "io-grey-mode", "isCustomize": "1", "icourl": "https:\/\/api.iowen.cn\/favicon\/", "icopng": ".png", "urlformat": "1", "customizemax": "10", "newWindow": "0", "lazyload": "1", "minNav": "1", "loading": "1" };
+        /* ]]> */
+    </script>
+
+<!-- 扩展性较好的 tooltips 提示类 JS 插件 -->
+<script src="/static/new_js/popper.min.js"></script>
+
+<!-- bootstrap框架 js -->
+<script src="/static/new_js/bootstrap.min.js"></script>
+
+<!-- 实现jquery滚动固定侧边栏的插件 -->
+<script src="/static/new_js/theia-sticky-sidebar.js"></script>
+
+<!-- 图片延迟加载 -->
+<script src="/static/new_js/lazyload.min.js"></script>
+
+<!-- jQuery 强大丰富的响应式弹出框插件 fancyBox -->
+<script src="/static/new_js/jquery_fancybox.min.js"></script>
+
+<!-- 自定义主要js -->
+<script src="/static/new_js/app.js"></script>
+
+<!-- 关闭遮目js -->
+<script type="text/javascript">
+        $(document).ready(function () {
+            var siteWelcome = $('#loading');
+            siteWelcome.addClass('close');
+            setTimeout(function () {
+                siteWelcome.remove();
+            }, 600);
+        });
+</script>
